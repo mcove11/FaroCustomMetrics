@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <!--
+
+        put the Faro SDK Script below this. 
+    -->
+    <script>
+      (function () {
+        // Create a script tag for loading the library
+        var script = document.createElement("script");
+    
+        // Initialize the Web-SDK at the onLoad event of the script tag above so it will be called when the library is loaded.
+        script.onload = () => {
+          window.GrafanaFaroWebSdk.initializeFaro({
+            // Mandatory, the URL of the Grafana Cloud collector with embedded application key.
+            url: '',
+    
+            // Mandatory, the identification label(s) of your application
+            app: {
+              name: 'test-app',
+              version: "1.0.0",
+            },
+          });
+        };
+    
+        // Set the source of the script tag to the CDN
+        script.src =
+          "https://unpkg.com/@grafana/faro-web-sdk@^1.0.0/dist/bundle/faro-web-sdk.iife.js";
+    
+        // Append the script tag to the head of the HTML page
+        document.head.appendChild(script);
+      })();
+    </script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">FOE Testing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="product">Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="checkout">Checkout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-5">
+      <h1>Hello, Faro!</h1>
+      <div class="col-lg-8 px-0">
+        <p class="fs-5"> The buttons below won't actually do anything, but will simulate triggering real actions on the website.</p>
+        <p class="fs-5"> Pages all do the same thing but are here to simulate events on different pages.</p>
+
+        <p></p>
+
+        <hr class="col-1 my-4">
+        <a class="btn btn-primary" id="SignIn">Sign in</a>
+        <div>Sign in will assign user information to all requets for the remainder of the session.</div>
+        <p></p> <a class="btn btn-primary" id="AddCart">Add to Cart</a> <input id="AddCartQuantity" type="text"/>
+        <div>Faro SDK will not send consecutive of the same event-so value needs to be different every time unless another event is sent in between.</div>
+        <p></p><a class="btn btn-primary">View Profile</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
