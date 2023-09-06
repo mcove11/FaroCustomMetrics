@@ -1,28 +1,29 @@
-import { chromium } from 'k6/experimental/browser';
+import { browser } from 'k6/experimental/browser';
 import { sleep } from 'k6';
+
 
 export const options = {
 
   discardResponseBodies: true,
 
   scenarios: {
-
-    contacts: {
-
+    ui: {
       executor: 'constant-vus',
-
       vus: 10,
-
       duration: '30s',
+      options: {
+        browser: {
+          type: 'chromium',
+        }
+      }
 
-    },
+    }
 
-  },
+  }
 
 };
 
 export default async function () {
-  const browser = chromium.launch({ headless: true });
   const page = browser.newPage();
 
   
@@ -56,6 +57,5 @@ export default async function () {
   
   } finally {
     page.close();
-    browser.close();
   }
 }
