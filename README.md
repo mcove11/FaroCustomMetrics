@@ -36,7 +36,7 @@ Install K6: https://k6.io/docs/get-started/installation/
 Test Script to automatically create traffic:
 
 ```bash 
-K6_BROWSER_ENABLED=true k6 run test.js
+K6_BROWSER_HEADLESS=true k6 run test.js
 ```
 
 
