@@ -1,4 +1,71 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_GRAFANACLOUD-MARKCOVELLO-LOGS",
+      "label": "grafanacloud-markcovello-logs",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "loki",
+      "pluginName": "Loki"
+    },
+    {
+      "name": "DS_EXPRESSION",
+      "label": "Expression",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "__expr__"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "__expr__",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.2.0-60853"
+    },
+    {
+      "type": "panel",
+      "id": "logs",
+      "name": "Logs",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "loki",
+      "name": "Loki",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -18,7 +85,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 96,
+  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -38,7 +105,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "Number of times \"Add to Cart\" Custom event has been fired from FE for given time frame. \n\nThis same logic can be used to count any custom event. (May want to compare checkouts started vs checkouts completed). ",
       "fieldConfig": {
@@ -84,12 +151,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.2.0-59981",
+      "pluginVersion": "10.2.0-60853",
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "sum(count_over_time({app=\"$AppName\"} | logfmt | event_name = `CartAdd` [$__range]))",
@@ -103,7 +170,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "Sums the custom values sent from the UI when \"Add to Cart\" is clicked. \n\n",
       "fieldConfig": {
@@ -147,12 +214,12 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "10.2.0-59981",
+      "pluginVersion": "10.2.0-60853",
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "sum by(app) (sum_over_time({app=\"$AppName\"} | logfmt | event_name = `CartAdd` | unwrap event_data_cartValue [1m]))",
@@ -167,7 +234,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "Sums the custom values sent from the UI when \"Add to Cart\" is clicked. \n\n",
       "fieldConfig": {
@@ -213,12 +280,12 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "10.2.0-59981",
+      "pluginVersion": "10.2.0-60853",
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "sum by(app) (sum_over_time({app=\"test-app2\"} | logfmt | event_name = `CartAdd` | unwrap event_data_cartValue [1m]))",
@@ -230,7 +297,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "sum(count_over_time({app=\"$AppName\"} | logfmt | event_name = `CartAdd` [$__range]))",
@@ -240,9 +307,8 @@
         },
         {
           "datasource": {
-            "name": "Expression",
             "type": "__expr__",
-            "uid": "__expr__"
+            "uid": "${DS_EXPRESSION}"
           },
           "expression": "$A / $B",
           "hide": false,
@@ -269,7 +335,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "",
       "fieldConfig": {
@@ -364,12 +430,12 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "10.2.0-59981",
+      "pluginVersion": "10.2.0-60853",
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "sum(count_over_time({app=\"$AppName\"} | logfmt | event_name = `SignIn` [$__range]))",
@@ -384,7 +450,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "Number of times session_start has been invoked by user type",
       "fieldConfig": {
@@ -472,12 +538,12 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "10.2.0-59981",
+      "pluginVersion": "10.2.0-60853",
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "count by(user_attr_customerType) (count_over_time({app=\"$AppName\"} | logfmt [$__range]))",
@@ -492,7 +558,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "Sums the custom values sent from the UI when \"Add to Cart\" is clicked. \n\n",
       "fieldConfig": {
@@ -537,12 +603,12 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "10.2.0-59981",
+      "pluginVersion": "10.2.0-60853",
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "avg by(user_attr_customerType) (avg_over_time({app=\"test-app2\"} | logfmt | event_name = `CartAdd` | unwrap event_data_cartValue [$__interval]))",
@@ -570,7 +636,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "All measurements and events sent by the Faro SDK. ",
       "gridPos": {
@@ -594,7 +660,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "{app=\"$AppName\"} | logfmt",
@@ -608,7 +674,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "Log of every time \"add to cart\" was clicked and custom event evoked. This can be changed for any custom event configured ex: checkouts completed/initiated. ",
       "gridPos": {
@@ -632,10 +698,10 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
-          "expr": "{app=\"$AppName\"} | logfmt | event_name = `CartAdd`",
+          "expr": "{app=\"$AppName\"} | logfmt | event_name = `CartAdd` | line_format `User Name: {{.user_username}}. User ID: {{.user_email}} User Type: {{.user_attr_customerType}} Cart Value: {{.event_data_cartValue}}` | user_username != `` | __error__=``",
           "key": "Q-62c8d348-a4f0-4f6d-81f8-2a9c9c7e8ee8-0",
           "queryType": "range",
           "refId": "A"
@@ -647,7 +713,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "grafanacloud-logs"
+        "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
       },
       "description": "To Do: \nremove non custom events?\n\nrename columns\nremove time\ncheck accuracy\nTurn into filter",
       "fieldConfig": {
@@ -698,12 +764,12 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.2.0-59981",
+      "pluginVersion": "10.2.0-60853",
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "grafanacloud-logs"
+            "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
           },
           "editorMode": "builder",
           "expr": "sum by(event_name) (count_over_time({app=\"test-app2\", kind=\"event\"} | logfmt [$__range]))",
@@ -721,14 +787,10 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": true,
-          "text": "test-app2",
-          "value": "test-app2"
-        },
+        "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "grafanacloud-logs"
+          "uid": "${DS_GRAFANACLOUD-MARKCOVELLO-LOGS}"
         },
         "definition": "",
         "hide": 0,
@@ -770,8 +832,8 @@
     ]
   },
   "timezone": "",
-  "title": "Front End Observabiliy Custom Metrics",
-  "uid": "c8d5775c-7039-4c07-9471-9b351db87ecds",
-  "version": 8,
+  "title": "Front End Observability Custom Metrics",
+  "uid": "c8d5775c-7039-4c07-9471-9b351db87ecdsd",
+  "version": 4,
   "weekStart": ""
 }
