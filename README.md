@@ -38,5 +38,5 @@ Test Script to automatically create traffic:
 ```bash 
 K6_BROWSER_HEADLESS=true k6 run test.js
 ```
-
+Note: must be on k6 version 0.46 or greater. 
 
